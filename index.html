@@ -8,8 +8,7 @@
 <meta name="apple-mobile-web-app-title" content="Astra 6">
 <link rel="manifest" href="manifest.json">
 <title>Astra 6</title>
-<link rel="stylesheet" href="style.css?v=5">
-<script src="https://js.puter.com/v2/"></script>
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <div class="app">
@@ -42,9 +41,23 @@
     <span id="status">Готово</span>
   </div>
   <small>Джарвис • Astra 6</small>
-  <input id="fileInput" type="file" hidden>
+  <input id="fileInput" type="file" accept="image/*,.txt,.md,.csv,.json,.pdf" hidden>
 </footer>
 </div>
-<script type="module" src="app.js?v=5"></script>
+
+<div class="onboarding" id="onboarding" hidden>
+  <div class="onboarding-card">
+    <div class="onboarding-mark">✦</div>
+    <div class="eyebrow">ASTRA 6</div>
+    <h2>Добро пожаловать</h2>
+    <p>Настроим Джарвиса за несколько секунд. Регистрация не нужна.</p>
+    <label class="field"><span>Как вас зовут?</span><input id="profileName" maxlength="40" autocomplete="name" placeholder="Ваше имя"></label>
+    <label class="field"><span>Сколько вам лет?</span><input id="profileAge" type="number" min="1" max="120" inputmode="numeric" placeholder="Возраст"></label>
+    <button class="continue-btn" id="saveProfile" type="button">Продолжить</button>
+    <small>Имя и возраст сохраняются только на этом устройстве.</small>
+  </div>
+</div>
+
+<script type="module" src="app.js?v=6"></script>
 </body>
 </html>
