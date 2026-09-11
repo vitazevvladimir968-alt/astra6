@@ -3,62 +3,48 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#09090e">
+<meta name="theme-color" content="#0b0b0c">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Astra 6">
 <link rel="manifest" href="manifest.json">
 <title>Astra 6</title>
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 <script src="https://js.puter.com/v2/"></script>
 </head>
 <body>
 <div class="app">
-<header>
-  <div class="brand"><span>✦</span><div><b>Astra 6</b><small>Джарвис</small></div></div>
-  <div class="badge">БЕЗ РЕГИСТРАЦИИ</div>
+<header class="topbar">
+  <button class="brand" id="newChat" type="button"><span class="brand-mark">✦</span><span><b>Astra 6</b><small>Джарвис</small></span></button>
+  <div class="top-actions"><button id="voiceMode" class="icon-btn" type="button" title="Голосовой режим">◉</button><button id="menuBtn" class="icon-btn" type="button">•••</button></div>
 </header>
 <main id="chat">
 <section class="welcome" id="welcome">
-  <div class="orb">✦</div>
-  <h1>Привет. Я Джарвис.</h1>
-  <p>Astra 6 — приложение. Я помогу с учёбой, работой, инженерией, кодом, файлами, поиском и изображениями.</p>
-  <div class="name-card" id="nameCard">
-    <strong>Как мне к вам обращаться?</strong>
-    <span id="nameSuggestion">Подбираю обращение…</span>
-    <div class="name-actions">
-      <button type="button" id="acceptName">✨ Предложить мне</button>
-      <button type="button" id="changeName">✏️ Я введу сам</button>
-    </div>
-    <div class="custom-name" id="customName" hidden>
-      <input id="nameInput" placeholder="Например: Владимир" maxlength="32" autocomplete="off">
-      <button type="button" id="saveName">Готово</button>
-    </div>
-  </div>
-  <div class="cards">
-    <button type="button" data-prompt="Помоги мне придумать и спланировать игру">💡 Идея для игры</button>
-    <button type="button" data-prompt="Помоги мне разобраться с этой учебной темой">🎓 Учёба</button>
-    <button type="button" data-prompt="Помоги решить инженерную задачу пошагово">🔧 Инженерия</button>
-    <button type="button" data-prompt="Помоги написать или исправить код">💻 Код</button>
-  </div>
+  <div class="welcome-mark">✦</div>
+  <h1>Чем могу помочь?</h1>
+  <p>Я Джарвис — помощник внутри Astra 6.</p>
 </section>
 </main>
+<div class="voice-panel" id="voicePanel" hidden>
+  <div class="voice-orb" id="voiceOrb">✦</div><strong>Джарвис слушает</strong><span id="voiceStatus">Говорите…</span>
+  <button id="stopVoice" type="button">Завершить</button>
+</div>
 <footer>
-  <div id="status">Astra 6 • Джарвис • готова</div>
   <div id="filePreview"></div>
-  <div class="tools">
-    <button type="button" id="attach" title="Прикрепить файл">＋</button>
-    <button type="button" id="mic" title="Голосовой ввод">🎙</button>
-    <label><input id="webMode" type="checkbox"> 🌐 Поиск</label>
-    <label><input id="imageMode" type="checkbox"> 🎨 Картинка</label>
-  </div>
   <div class="composer">
-    <textarea id="input" placeholder="Напишите Джарвису…" rows="1"></textarea>
-    <button type="button" id="send" title="Отправить">➤</button>
+    <button class="round-btn" id="attach" type="button" title="Добавить файл">＋</button>
+    <textarea id="input" placeholder="Сообщение…" rows="1" autocomplete="off"></textarea>
+    <button class="round-btn mic" id="mic" type="button" title="Голосовой ввод">⌁</button>
+    <button class="send" id="send" type="button" title="Отправить">↑</button>
   </div>
-  <small>Гостевой режим. Номер телефона и SMS-код не нужны.</small>
+  <div class="composer-tools">
+    <label><input id="webMode" type="checkbox"> Поиск</label>
+    <label><input id="imageMode" type="checkbox"> Изображение</label>
+    <span id="status">Готово</span>
+  </div>
+  <small>Джарвис • Astra 6</small>
   <input id="fileInput" type="file" hidden>
 </footer>
 </div>
-<script type="module" src="app.js?v=4"></script>
+<script type="module" src="app.js?v=5"></script>
 </body>
 </html>
