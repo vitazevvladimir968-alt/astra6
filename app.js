@@ -1,4 +1,4 @@
-const MODEL="openai/gpt-5.6-luna";
+const MODEL="gpt-5.6-luna";
 const IMAGE_MODEL="gpt-image-2";
 const status=document.querySelector("#status");
 const chat=document.querySelector("#chat");
@@ -10,9 +10,9 @@ const imageMode=document.querySelector("#imageMode");
 const webMode=document.querySelector("#webMode");
 const mic=document.querySelector("#mic");
 const filePreview=document.querySelector("#filePreview");
-const login=document.querySelector("#login");
 let messages=[];
 let attachedFile=null;
+let authStarted=false;
 
 const SYSTEM=`Ты Астра 6 — мощный русскоязычный ИИ-помощник. Отвечай точно, полезно и естественно. Умей объяснять учебные и инженерные задачи пошагово, анализировать данные и файлы, помогать с программированием и писать структурированные документы. Если информации недостаточно — честно скажи об этом. Не выдумывай источники.`;
 
@@ -29,12 +29,18 @@ function add(role,text="",extra={}){
 }
 
 async function ensureAuth(){
+  if(puter.auth.isSignedIn()) return;
+  if(authStarted) return;
+  authStarted=true;
+  status.textContent="Подключаю бесплатный гостевой режим…";
   try{
-    if(puter.auth && !puter.auth.isSignedIn()){
-      status.textContent="Вход в бесплатный AI-сервис…";
-      await puter.auth.signIn();
-    }
-  }catch(e){throw new Error("Не удалось выполнить вход: "+e.message)}
+    // Puter supports temporary users so the app can onboard people without requiring a normal signup.
+    await puter.auth.signIn({attempt_temp_user_creation:true});
+    status.textContent="Гостевой режим • готово";
+  }catch(e){
+    authStarted=false;
+    throw new Error("Не удалось запустить гостевой режим: "+(e?.msg||e?.message||e));
+  }
 }
 
 function opts(){
@@ -48,8 +54,8 @@ async function ask(text){
   input.value=""; input.style.height="auto";
   const file=attachedFile; clearFile();
   add("user",text+(file?`\n📎 ${file.name}`:""));
-  const bubble=add("assistant","Думаю…");
-  send.disabled=true; status.textContent=webMode.checked?"Ищу информацию и думаю…":"Астра 6 • GPT-5.6 Luna";
+  const bubble=add("assistant","Подключаюсь…");
+  send.disabled=true; status.textContent=webMode.checked?"Ищу информацию…":"Астра 6 • GPT-5.6 Luna";
   try{
     await ensureAuth();
     let response;
@@ -73,7 +79,7 @@ async function ask(text){
     status.textContent="Готова";
   }catch(e){
     bubble.textContent="Ошибка: "+(e?.message||e);
-    status.textContent="Ошибка подключения";
+    status.textContent="Не удалось подключить ИИ";
   }finally{send.disabled=false;input.focus();}
 }
 
@@ -91,7 +97,7 @@ async function generateImage(prompt){
     const av=document.createElement("div");av.className="avatar";av.textContent="✦";
     const body=document.createElement("div");body.className="message-body";
     const title=document.createElement("div");title.className="bubble";title.textContent="Готово ✨";
-    body.append(title,img);img.className="result-image";row.append(av,body);chat.append(row);scroll();
+    img.className="result-image";body.append(title,img);row.append(av,body);chat.append(row);scroll();
     status.textContent="Готова";
   }catch(e){bubble.textContent="Не получилось создать изображение: "+(e?.message||e);status.textContent="Ошибка генерации"}
   finally{send.disabled=false;input.focus();}
@@ -120,6 +126,5 @@ if(mic && (window.SpeechRecognition||window.webkitSpeechRecognition)){
   rec.onend=()=>mic.classList.remove("active");
 }else if(mic){mic.disabled=true;mic.title="Голосовой ввод недоступен в этом браузере"}
 
-login.onclick=async()=>{try{await ensureAuth();status.textContent="Вход выполнен"}catch(e){status.textContent=e.message}};
+status.textContent="Астра 6 • бесплатно • без обычной регистрации";
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js");
-status.textContent="Астра 6 • GPT-5.6 Luna";
