@@ -3,12 +3,19 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b0b10"><link rel="manifest" href="manifest.json">
 <title>Астра 6</title><link rel="stylesheet" href="style.css">
+<script src="https://js.puter.com/v2/"></script>
 </head><body>
 <div class="app">
-<header><div class="brand"><span>✦</span><b>Астра 6</b></div><div class="badge">БЕСПЛАТНО</div></header>
-<main id="chat"><section class="welcome" id="welcome"><div class="orb">✦</div><h1>Чем помочь?</h1><p>ИИ-помощник, который можно установить на телефон.</p>
-<div class="cards"><button>💡 Придумай идею для игры</button><button>📝 Напиши текст</button><button>💻 Помоги с кодом</button><button>📚 Объясни тему</button></div></section></main>
-<footer><div id="status">Модель ещё не загружена</div><div class="composer"><textarea id="input" placeholder="Напишите сообщение..." rows="1"></textarea><button id="send">➤</button></div><small>Работа модели выполняется прямо в браузере. Первый запуск может скачать большую модель.</small></footer>
-</div>
+<header><div class="brand"><span>✦</span><b>Астра 6</b></div><div class="header-actions"><button id="login" class="login">Войти</button><div class="badge">БЕСПЛАТНО</div></div></header>
+<main id="chat"><section class="welcome" id="welcome"><div class="orb">✦</div><h1>Чем помочь?</h1><p>Умный AI-помощник для учёбы, работы, инженерии, файлов, кода и изображений.</p>
+<div class="cards"><button data-prompt="Помоги мне придумать и спланировать игру">💡 Идея для игры</button><button data-prompt="Помоги мне разобраться с этой учебной темой">🎓 Учёба</button><button data-prompt="Помоги решить инженерную задачу пошагово">🔧 Инженерия</button><button data-prompt="Помоги написать или исправить код">💻 Код</button></div></section></main>
+<footer>
+<div id="status">Астра 6 • GPT-5.6 Luna</div>
+<div id="filePreview"></div>
+<div class="tools"><button id="attach" title="Файл">＋</button><button id="mic" title="Голос">🎙</button><label><input id="webMode" type="checkbox"> 🌐 Поиск</label><label><input id="imageMode" type="checkbox"> 🎨 Картинка</label></div>
+<div class="composer"><textarea id="input" placeholder="Напишите сообщение..." rows="1"></textarea><button id="send">➤</button></div>
+<small>Астра 6 работает через облачный AI. Бесплатный режим может иметь ограничения.</small>
+<input id="fileInput" type="file" hidden>
+</footer></div>
 <script type="module" src="app.js"></script>
 </body></html>
