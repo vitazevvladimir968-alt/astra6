@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-title" content="Astra 6">
 <link rel="manifest" href="manifest.json">
 <title>Astra 6</title>
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 <div class="app">
@@ -16,48 +16,18 @@
   <button class="brand" id="newChat" type="button"><span class="brand-mark">✦</span><span><b>Astra 6</b><small>Джарвис</small></span></button>
   <div class="top-actions"><button id="voiceMode" class="icon-btn" type="button" title="Голосовой режим">◉</button><button id="menuBtn" class="icon-btn" type="button">•••</button></div>
 </header>
-<main id="chat">
-<section class="welcome" id="welcome">
-  <div class="welcome-mark">✦</div>
-  <h1>Чем могу помочь?</h1>
-  <p>Я Джарвис — помощник внутри Astra 6.</p>
-</section>
-</main>
-<div class="voice-panel" id="voicePanel" hidden>
-  <div class="voice-orb" id="voiceOrb">✦</div><strong>Джарвис слушает</strong><span id="voiceStatus">Говорите…</span>
-  <button id="stopVoice" type="button">Завершить</button>
+<main id="chat"><section class="welcome" id="welcome"><div class="welcome-mark">✦</div><h1>Чем могу помочь?</h1><p>Я Джарвис — помощник внутри Astra 6.</p></section></main>
+<div class="voice-panel" id="voicePanel" hidden><div class="voice-orb" id="voiceOrb">✦</div><strong>Джарвис слушает</strong><span id="voiceStatus">Говорите…</span><button id="stopVoice" type="button">Завершить</button></div>
+<footer><div id="filePreview"></div><div class="composer"><button class="round-btn" id="attach" type="button">＋</button><textarea id="input" placeholder="Сообщение…" rows="1" autocomplete="off"></textarea><button class="round-btn mic" id="mic" type="button">⌁</button><button class="send" id="send" type="button">↑</button></div><div class="composer-tools"><label><input id="webMode" type="checkbox"> Поиск</label><label><input id="imageMode" type="checkbox"> Изображение</label><span id="status">Готово</span></div><small>Джарвис • Astra 6</small><input id="fileInput" type="file" accept="image/*,.txt,.md,.csv,.json,.pdf" hidden></footer>
 </div>
-<footer>
-  <div id="filePreview"></div>
-  <div class="composer">
-    <button class="round-btn" id="attach" type="button" title="Добавить файл">＋</button>
-    <textarea id="input" placeholder="Сообщение…" rows="1" autocomplete="off"></textarea>
-    <button class="round-btn mic" id="mic" type="button" title="Голосовой ввод">⌁</button>
-    <button class="send" id="send" type="button" title="Отправить">↑</button>
-  </div>
-  <div class="composer-tools">
-    <label><input id="webMode" type="checkbox"> Поиск</label>
-    <label><input id="imageMode" type="checkbox"> Изображение</label>
-    <span id="status">Готово</span>
-  </div>
-  <small>Джарвис • Astra 6</small>
-  <input id="fileInput" type="file" accept="image/*,.txt,.md,.csv,.json,.pdf" hidden>
-</footer>
-</div>
-
 <div class="onboarding" id="onboarding" hidden>
   <div class="onboarding-card">
-    <div class="onboarding-mark">✦</div>
-    <div class="eyebrow">ASTRA 6</div>
-    <h2>Добро пожаловать</h2>
-    <p>Настроим Джарвиса за несколько секунд. Регистрация не нужна.</p>
+    <div class="onboarding-mark">✦</div><div class="eyebrow">ASTRA 6</div><h2>Добро пожаловать</h2><p>Настроим Джарвиса за несколько секунд. Регистрация не нужна.</p>
     <label class="field"><span>Как вас зовут?</span><input id="profileName" maxlength="40" autocomplete="name" placeholder="Ваше имя"></label>
     <label class="field"><span>Сколько вам лет?</span><input id="profileAge" type="number" min="1" max="120" inputmode="numeric" placeholder="Возраст"></label>
     <button class="continue-btn" id="saveProfile" type="button">Продолжить</button>
     <small>Имя и возраст сохраняются только на этом устройстве.</small>
   </div>
 </div>
-
-<script type="module" src="app.js?v=6"></script>
-</body>
-</html>
+<script type="module" src="app.js?v=8"></script>
+</body></html>
