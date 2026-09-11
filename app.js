@@ -1,6 +1,6 @@
 const API_BASE=localStorage.getItem("astra6_api_base")||"";
 const $=s=>document.querySelector(s);
-const chat=$("#chat"),input=$("#input"),send=$("#send"),status=$("#status"),fileInput=$("#fileInput"),filePreview=$("#filePreview"),attach=$("#attach"),mic=$("#mic"),webMode=$("#webMode"),imageMode=$("#imageMode"),voiceMode=$("#voiceMode"),voicePanel=$("#voicePanel"),voiceStatus=$("#voiceStatus"),stopVoice=$("#stopVoice"),newChat=$("#newChat"),onboarding=$("#onboarding"),profileName=$("#profileName"),profileAge=$("#profileAge"),saveProfile=$("#saveProfile");
+const chat=$("#chat"),input=$("#input"),send=$("#send"),status=$("#status"),fileInput=$("#fileInput"),filePreview=$("#filePreview"),attach=$("#attach"),mic=$("#mic"),webMode=$("#webMode"),imageMode=$("#imageMode"),voiceMode=$("#voiceMode"),voicePanel=$("#voicePanel"),voiceStatus=$("#voiceStatus"),stopVoice=$("#stopVoice"),newChat=$("#newChat"),onboarding=$("#onboarding"),profileName=$("#profileName"),profileAge=$("#profileAge"),saveProfile=$("#saveProfile"),profileForm=$("#profileForm");
 let messages=[],attachedFile=null,busy=false,recognition=null,voiceActive=false;
 let userName=localStorage.getItem("astra6_user_name")||"";
 const userAge=localStorage.getItem("astra6_user_age")||"";
@@ -22,6 +22,8 @@ function speak(text){if(!window.speechSynthesis||!text)return;window.speechSynth
 voiceMode.onclick=()=>{voicePanel.hidden=false;startRecognition()};stopVoice.onclick=()=>{try{recognition?.stop()}catch{}voicePanel.hidden=true;window.speechSynthesis?.cancel()};
 newChat.onclick=()=>{messages=[];chat.innerHTML='<section class="welcome" id="welcome"><div class="welcome-mark">✦</div><h1>Чем могу помочь?</h1><p>Я Джарвис — помощник внутри Astra 6.</p></section>';input.focus()};
 $("#menuBtn").onclick=()=>setStatus(`Astra 6 • ${userName||"Джарвис"}`);
-saveProfile.onclick=()=>{const n=profileName.value.trim(),a=profileAge.value.trim();if(!n){profileName.focus();return}if(!a||+a<1||+a>120){profileAge.focus();return}userName=n;localStorage.setItem("astra6_user_name",n);localStorage.setItem("astra6_user_age",a);onboarding.hidden=true;setStatus("Готово");input.focus()};
-function init(){if(!userName||!userAge){onboarding.hidden=false;setTimeout(()=>profileName.focus(),100)}else input.focus();setStatus("Готово")}
+function finishProfile(){const n=profileName?.value.trim()||"",a=profileAge?.value.trim()||"";if(!n){profileName?.focus();return false}if(!a||+a<1||+a>120){profileAge?.focus();return false}userName=n;localStorage.setItem("astra6_user_name",n);localStorage.setItem("astra6_user_age",a);if(onboarding)onboarding.hidden=true;setStatus("Готово");input?.focus();return true}
+profileForm?.addEventListener("submit",e=>{e.preventDefault();finishProfile()});
+saveProfile?.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();finishProfile()});
+function init(){if(!userName||!userAge){if(onboarding)onboarding.hidden=false;setTimeout(()=>profileName?.focus(),100)}else input?.focus();setStatus("Готово")}
 init();
